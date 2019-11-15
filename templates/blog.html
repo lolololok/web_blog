@@ -1,0 +1,61 @@
+{% extends "base-blog.html" %}
+{% block blag-base %}
+    <div class="col-xs-6 center-postion">
+        <div class="top-top">
+            <i class="fa fa-arrow-circle-up fa-2x" style="color: #2aabd2;margin-top: 3%;margin-left: 2%">
+                <a href="/api/v1/article/show/?id={{ article_top_obj.nid }}"
+                   style="text-decoration: none">{{ article_top_obj.title }}</a>
+            </i>
+        </div>
+        {% if not blog_obj %}
+            <div class="jumbotron">
+                <h1 style="padding-left: 2%">空空如也!</h1>
+                <p>...</p>
+                <p><a class="btn btn-primary btn-lg" href="/api/v1/addarticle/" role="button">开始创作</a></p>
+            </div>
+        {% endif %}
+        {% for item in blog_obj %}
+            <div class="article-area">
+                <div class="title">
+                    <h4 style="padding-top: 2%;padding-left: 1%"><a href="/api/v1/article/show/?id={{ item.nid }}"
+                                                                    style="text-decoration: none;color: #222222">{{ item.title }}</a>
+                    </h4>
+                    <ul class="small-tag">
+                        </li>
+                        <li class="tag-lis"><i
+                                class="fa fa-calendar-check-o">{{ item.create_time|date:"Y年m月d日 H:m:s" }}</i>
+                        </li>
+                        <li class="tag-lis"><i class="fa fa-tags">
+                            {% for tag in item.tags.all %}
+                                <a href="/api/v1/blog/?id={{ tag.nid }}&tag=1"
+                                   style="color: #666666;text-decoration: none">{{ tag.title }}&nbsp;</a>
+                            {% endfor %}
+                        </i></li>
+                        <li class="tag-lis"><a href="/api/v1/blog/?id={{ item.category.nid }}&tag=2"
+                                               style="color: #666666"><i
+                                class="fa fa-folder-open">{{ item.category.title }}</i></a>
+                        </li>
+                        <li class="tag-lis"><a style="color: #666666" class="toped" id="{{ item.nid }}"><i
+                                class="fa fa-arrow-circle-up"></i></a>
+                    </ul>
+                </div>
+                <hr style="width: 95%;">
+                <p style="color: #666666;padding: 5px;">{{ item.desc }}</p>
+                <div class="pull-right" style="margin-right: 3%">
+                    <a href="#" style="text-decoration: none" class="blog-delete" article-id="{{ item.nid }}">删除</a>
+                    <a href="/api/v1/editarticle/?id={{ item.nid }}" style="text-decoration: none">编辑</a>
+                </div>
+            </div>
+        {% endfor %}
+        {% if blog_obj %}
+            <nav class="pull-right">
+                <ul class="pagination">
+                    {{ pagination.page_html|safe }}
+                </ul>
+            </nav>
+        {% endif %}
+
+    </div>
+{% endblock %}
+
+

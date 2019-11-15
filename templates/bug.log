@@ -1,0 +1,35 @@
+2019/5/12:
+re-info(HTML): <span class="help-block">头像文件大小不能大于5M</span>
+register(HTML):<span class="help-block">头像文件大小不能大于5M</span>
+forms.py():
+        1、error_messages={
+            'required': '个性签名不能为空',
+        }
+        2、
+blog.py:(UpDown)
+    models.ArticleUpDown.objects.create(user=user, article_id=article_id, is_up=is_up)
+    if is_up:
+        models.Article.objects.filter(pk=article_id).update(up_count=F('up_count') + 1)
+    else:
+        models.Article.objects.filter(pk=article_id).update(down_count=F('down_count') + 1)
+
+blog.html:
+           <p style="color: #666666;padding: 5px;">{{ item.desc }}</p>
+
+blog.py: (Bowen)
+        article_obj = models.Article.objects.all().order_by("-create_time")
+
+forms.py()：
+    def clean_sign(self):
+        sign = self.cleaned_data.get('sign')
+        if len(sign) > 20:
+            # 表示email已存在
+            self.add_error('sign', ValidationError('字数不能超过20字'))
+        else:
+            return email
+
+blog.py:(Bowen):
+    blog_obj = models.Article.objects.filter(user=request.user).all().order_by("-create_time")
+
+
+

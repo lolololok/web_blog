@@ -1,0 +1,52 @@
+{% extends "base-blog.html" %}
+
+{% block blag-base %}
+    <div class="col-xs-6 center-postion">
+        <div class="bowen">
+            {% for article in article_obj %}
+                <div class="media">
+                    <div style="border-left: 3px solid #bce8f1;">
+                        <a href="/api/v1/bowen/?uid={{ article.user.nid }}"><img class="avatar bowen-top"
+                                                                                 src="/media/{{ article.user.avatar }}"
+                                                                                 alt=""></a>
+                        <h4 class="bowen-top" style="margin-left: 1%;padding-top: 2%"><a
+                                href="/api/v1/article/show/?id={{ article.nid }}"
+                                style="text-decoration: none;color: black">{{ article.title }}</a></h4>
+                        <ul class="bowen-top bowen-tag" style="list-style: none;margin-left: 1%;margin-top: 3%">
+                            <li><i class="fa fa-folder-open"></i>{{ article.category.title }}</li>
+                            <li><i class="fa fa-calendar-check-o">{{ article.create_time|date:"Y年m月d日 H:m:s" }}</i></li>
+
+                            <li><i class="fa fa-tags">
+                                {% for item in article.tags.all %}
+                                    {{ item.title }}
+                                {% endfor %}
+                            </i></li>
+
+                            <li><i class="fa fa-user-o"></i>{{ article.user.username }}</li>
+
+                        </ul>
+                    </div>
+                    <hr style="width: 90%">
+                    <div>
+                        <p style="padding: 2%">
+                            {{ article.desc }}
+                        </p>
+                        <ul style="list-style: none;margin-right: 5%;margin-bottom: 5%">
+                            <li class="bowen-bli"><i class="fa fa-thumbs-o-up">({{ article.up_count }})</i></li>
+                            <li class="bowen-bli"><i class="fa fa-thumbs-o-down">({{ article.down_count }})</i></li>
+                            <li class="bowen-bli"><i class="fa fa-commenting-o">({{ article.comment_count }})</i></li>
+                        </ul>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        {% if article_obj %}
+            <nav class="pull-right">
+                <ul class="pagination">
+                    {{ pagination.page_html|safe }}
+                </ul>
+            </nav>
+        {% endif %}
+
+    </div>
+{% endblock %}

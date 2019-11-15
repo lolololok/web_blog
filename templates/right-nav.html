@@ -1,0 +1,62 @@
+<div class="col-xs-3 pull-right right-media">
+    <div class="right-lis search">
+        <div style="width: 70%;margin: 10%">
+            <form action="{% url 'bowen' %}" method="post">
+                {% csrf_token %}
+                <div class="input-group">
+                    <input name="searchinput" type="text" class="form-control" placeholder="搜索...">
+                    <span class="input-group-btn">
+<button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
+</span>
+                </div><!-- /input-group -->
+            </form>
+
+        </div><!-- /.col-lg-6 -->
+    </div>
+    <div class="right-lis range">
+        <div style="border-bottom: 1px solid #2aabd2;background: #bce8f1;box-shadow: #9acfea 0 0 10px">
+            <h4 style="margin-left: 5%;margin-top: 0;padding-top: 2%;">文章分类</h4>
+        </div>
+        <ul style="list-style: none;margin-left: 5%">
+            {% for blog in category_list %}
+                <li style="margin-top: 2%"><a href="/api/v1/blog/?id={{ blog.nid }}&tag=2"
+                                              style="text-decoration: none;font-size: 14px">{{ blog.title }}({{ blog.c }})</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="right-lis data-lis">
+        <div style="border-bottom: 1px solid #f7e1b5;background: #f9f2f4;box-shadow: #f2dede 0 0 10px">
+            <h4 style="margin-left: 5%;margin-top: 0;padding-top: 2%;">日期归档</h4>
+        </div>
+        <ul style="list-style: none;margin-left: 5%">
+            {% for archive in archive_list %}
+                <li style="margin-top: 2%">
+                    <a href="/api/v1/blog/?id={{ archive.ym }}&tag=3" style="text-decoration: none;font-size: 14px">
+                        {{ archive.ym }}({{ archive.c }})
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="right-lis tags">
+        <div style="border-bottom: 1px solid yellowgreen;background-color: #c8e5bc;box-shadow: #c8e5bc 0 0 10px">
+            <h4 style="margin-left: 5%;margin-top: 0;padding-top: 2%">标签</h4>
+
+        </div>
+        <div id="tagCloud" style="width: 400px;">
+            <span id="desc"></span>
+            <i id="icon"></i>
+            {% for item in tag_list %}
+                <a href="/api/v1/blog/?id={{ item.nid }}&tag=1"><span class="tag" id="tag1"
+                                                                      title="{{ item.c }}">{{ item.title }}</span></a>
+            {% endfor %}
+        </div>
+    </div>
+
+</div>
+
+
+
+
+

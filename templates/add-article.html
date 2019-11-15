@@ -1,0 +1,35 @@
+{% extends "base-blog.html" %}
+
+{% block blag-base %}
+    <div class="col-xs-6 article_content center-postion" >
+        <form autocomplete="off" action="/api/v1/addarticle/" method="post" class="form-horizontal" novalidate>
+            {% csrf_token %}
+        <div class="form-group">
+            <div class="col-sm-6">
+                <label for="">文章标题</label>：{{ form_obj.title }}
+                <span id="" class="help-block">{{ form_obj.title.errors.0 }}</span>
+            </div>
+            <div>
+                <button type="submit" class="btn btn-success pull-right add-content" style="margin-top: 3%">发布</button>
+            </div>
+        </div>
+        <textarea name="article_content" id="article_content" cols="60" rows="20"><img src="" alt=""></textarea>
+        <div style="margin-top: 6%">
+            <div class="form-group">
+                <div class="col-sm-10">
+                    <label for="">添加标签</label>：{{ form_obj.tags }}若有多个标签请以",”隔开
+                    <span id="" class="help-block">{{ form_obj.tags.errors.0 }}</span>
+                </div>
+            </div>
+            <div class="form-group" style="margin-top: 4%">
+                <div class="col-sm-10">
+                    <label for="">文章分类</label>：{{ form_obj.category }}
+                    <span id="" class="help-block">{{ form_obj.category.errors.0 }}</span>
+                </div>
+            </div>
+
+        </div>
+        </form>
+    </div>
+
+{% endblock %}

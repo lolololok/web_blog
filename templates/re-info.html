@@ -1,0 +1,41 @@
+{% extends "base-blog.html" %}
+
+{% block blag-base %}
+        <div class="col-xs-6 re-info center-postion">
+            <form enctype="multipart/form-data" autocomplete="off" novalidate action="{% url 'reinfo' %}" method="post" class="form-horizontal">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="{{ form_obj.username.id_for_label }}"
+                           class="col-sm-2 control-label">{{ form_obj.username.label }}</label>
+                    <div class="col-sm-10">
+                        {{ form_obj.username }}
+                        <span id="" class="help-block">{{ erro }}</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="{{ form_obj.sign.id_for_label }}"
+                           class="col-sm-2 control-label">{{ form_obj.sign.label }}</label>
+                    <div class="col-sm-10">
+                        {{ form_obj.sign }}
+                        <span id="" class="help-block">{{ form_obj.sign.errors.0 }}</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">头像</label>
+                    <div class="col-sm-8">
+                        <label for="id_avatar"><img id="img-ava" src="/media/{{ request.user.avatar }}" alt=""></label>
+                        <input accept="image/*" type="file" id="id_avatar" name="avatar" style="display: none">
+                        <span class="help-block">头像文件大小不能大于5M</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-success">修改</button>
+                        <a href="{% url 'bowen' %}" id="re-submit" type="button" class="btn btn-info pull-right">返回首页</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+{% endblock %}

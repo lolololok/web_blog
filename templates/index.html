@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>个人博客</title>
+    <link rel="stylesheet" href="/static/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/mycss.css">
+    <link rel="icon" type="image/x-icon" href="/static/img/url_icon.jpg"/>
+
+    <script src="/static/jquery-3.2.1.min.js"></script>
+    <script src="/static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+
+<div id="index-img" style='background-image: url("/static/main-img/rain.gif")' class="index"></div>
+<div class="container">
+    <button class="btn-lg  btn-primary  btn-circle into" data-toggle="modal" data-target=".bs-example-modal-sm">打开你的世界
+    </button>
+
+    <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <p style="text-align: center;margin-top: 10%">如果你已有账号请点击登录，否则点击注册</p>
+                <hr>
+                <div style="margin-bottom: 2%">
+                    <button class="btn btn-success" style="margin-left: 5%" data-dismiss="modal" data-toggle="modal"
+                            data-target=".bs-example-modal-lg">登录
+                    </button>
+                    <a href="/api/v1/register/" class="btn btn-info" style="margin-left: 50%">注册</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="login-interface">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content" style="height: 300px;width: 600px;background-color: black; opacity: 0.7;">
+                <div class="row">
+                    <form class="col-xs-6 col-xs-offset-3 form-horizontal">
+                        {% csrf_token %}
+                        <div class="form-group" style="margin-top: 10%">
+                            <label for="exampleInputEmail1" class="text-login">邮箱/用户名</label>
+                            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email/username" value="{{ emailinit }}">
+                            <span class="email-error"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1" class="text-login">密码</label>
+                            <input type="password" class="form-control" id="exampleInputPassword1"
+                                   placeholder="Password" value="{{ passwordinit }}">
+                        </div>
+                        <div class="checkbox">
+                            <label class="text-login">
+                                <input type="checkbox" id="check" checked="{{ check }}"> 记住密码
+                                <a href="/api/v1/retrpwd/" style="text-decoration: none; padding-left: 120px">忘记密码</a>
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <!-- 放置极验的滑动验证码 -->
+                            <div id="popup-captcha"></div>
+                        </div>
+                        <div class="form-group">
+                            <button type="button" class="btn btn-success" id="login">登录</button>
+                            <button type="button" class="btn btn-warning pull-right" data-dismiss="modal">取消</button>
+                            <span class="login-error"></span>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <h1 class="index-title">你好陌生人</h1>
+    <h4 class="content">
+        我希望你读很多书，走很远的路。我希望你爱很多人，也被很多人爱。<br>
+        我希望你走过人山人海，也遍览山河湖海。<br>
+        我希望你看纸质书，送手写的祝福。我要你独立坚强温暖明亮，我要你在这寡淡的世上，深情的活
+    </h4>
+</div>
+<script type="text/javascript" src="https://cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js"></script>
+<script src="/static/gt.js"></script>
+<script type="text/javascript" src="/static/js/index.js"></script>
+</body>
+</html>

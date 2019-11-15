@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>个人中心</title>
+    <link rel="stylesheet" href="/static/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/mycss.css">
+    <link rel="stylesheet" href="/static/fontawesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/static/sweetalert/sweetalert.css">
+    <link rel="icon" type="image/x-icon" href="/static/img/url_icon.jpg"/>
+    <script src="/static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+</head>
+<body>
+{% load my_tags %}
+{#<div class="container">#}
+<div class="row ">
+        {% get_left_menu request %}
+        {% block blag-base %}
+        {% endblock %}
+        {% get_right_menu request %}
+</div>
+{#</div>#}
+{% csrf_token %}
+<script src="/static/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="/static/active_back/love.js"></script>
+<script type="text/javascript" src="/static/sweetalert/sweetalert.min.js"></script>
+<script charset="utf-8" src="/static/kindeditor/kindeditor-all-min.js"></script>
+<script src="/static/tag_yun.js"></script>
+<script type="text/javascript" src="https://cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js"></script>
+<script type="text/javascript" src="/static/js/article_detail.js"></script>
+<script type="text/javascript" src="/static/js/blog.js"></script>
+</body>
+</html>
