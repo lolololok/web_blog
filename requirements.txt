@@ -1,4 +1,4 @@
 PyMySQL==0.9.3
 geetest==3.2.1
 beautifulsoup4==4.7.1
-django==1.11.1
+django==1.11.29
